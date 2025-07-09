@@ -163,7 +163,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 128634061}
-  - component: {fileID: 128634062}
   m_Layer: 0
   m_Name: PatrolZone
   m_TagString: Untagged
@@ -188,21 +187,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &128634062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 128634060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c09bb63d391384448526f8b7018e1d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _points:
-  - {fileID: 34338731}
-  - {fileID: 1524419369}
 --- !u!1 &233927049
 GameObject:
   m_ObjectHideFlags: 0
@@ -4673,6 +4657,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pool: {fileID: 405887795}
   _waitTime: 2
+--- !u!114 &411209804 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1976047660338061386, guid: 4808e093b942dcc4fab782ae9762bcf2, type: 3}
+  m_PrefabInstance: {fileID: 1863068328}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5703968667949114ab6876fa3b18febe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &508078476
 GameObject:
   m_ObjectHideFlags: 0
@@ -6906,6 +6901,17 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!114 &849431260 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1976047660338061386, guid: 4808e093b942dcc4fab782ae9762bcf2, type: 3}
+  m_PrefabInstance: {fileID: 6640594343703992139}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5703968667949114ab6876fa3b18febe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -7041,6 +7047,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -9047288738319896152, guid: 4808e093b942dcc4fab782ae9762bcf2, type: 3}
+      propertyPath: _enemyAnimation
+      value: 
+      objectReference: {fileID: 1621918652}
+    - target: {fileID: -9047288738319896152, guid: 4808e093b942dcc4fab782ae9762bcf2, type: 3}
       propertyPath: _wayPoints.Array.data[0]
       value: 
       objectReference: {fileID: 34338731}
@@ -7132,6 +7142,17 @@ Transform:
   m_Father: {fileID: 128634061}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1621918652 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1976047660338061386, guid: 4808e093b942dcc4fab782ae9762bcf2, type: 3}
+  m_PrefabInstance: {fileID: 1475593955}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5703968667949114ab6876fa3b18febe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1863068328
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7140,6 +7161,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -9047288738319896152, guid: 4808e093b942dcc4fab782ae9762bcf2, type: 3}
+      propertyPath: _enemyAnimation
+      value: 
+      objectReference: {fileID: 411209804}
     - target: {fileID: -9047288738319896152, guid: 4808e093b942dcc4fab782ae9762bcf2, type: 3}
       propertyPath: _wayPoints.Array.data[0]
       value: 
@@ -7209,10 +7234,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1936730579368653694, guid: 8bb92f8cdd61dec469785ffb07d45173, type: 3}
-      propertyPath: _speed
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4343402885647207514, guid: 8bb92f8cdd61dec469785ffb07d45173, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -7274,6 +7295,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -9047288738319896152, guid: 4808e093b942dcc4fab782ae9762bcf2, type: 3}
+      propertyPath: _enemyAnimation
+      value: 
+      objectReference: {fileID: 849431260}
     - target: {fileID: -9047288738319896152, guid: 4808e093b942dcc4fab782ae9762bcf2, type: 3}
       propertyPath: _wayPoints.Array.data[0]
       value: 

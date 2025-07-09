@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
@@ -7,18 +6,11 @@ public class EnemyMovement : MonoBehaviour
 
     [SerializeField] private Transform[] _wayPoints;
 
-    private SpriteRenderer _spriteRenderer;
+    [SerializeField] private EnemyAnimation _enemyAnimation;
 
     private int _currentWayPoint = 0;
 
     private bool _isRunning = false;
-
-    public event Action<bool> Running;
-
-    private void Awake()
-    {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-    }
 
     private void Update()
     {
@@ -34,13 +26,28 @@ public class EnemyMovement : MonoBehaviour
 
         transform.position = Vector2.MoveTowards(transform.position, target, _speed * Time.deltaTime);
 
-        if (target.x > transform.position.x)
-            _spriteRenderer.flipX = false;
-        else
-            _spriteRenderer.flipX = true;
+        Rotate(target.x);
 
         _isRunning = true;
 
-        Running?.Invoke(_isRunning);
+        _enemyAnimation.PlayAnimationRun(_isRunning);
+    }
+
+    private void Rotate(float xCoordinateTarget)
+    {
+        float degreesRotate;
+
+        if (xCoordinateTarget > transform.position.x)
+        {
+            degreesRotate = 0.0f;
+
+            transform.rotation = Quaternion.Euler(Vector2.up * degreesRotate);
+        }
+        else
+        {
+            degreesRotate = 180.0f;
+
+            transform.rotation = Quaternion.Euler(Vector2.up * degreesRotate);
+        }
     }
 }
