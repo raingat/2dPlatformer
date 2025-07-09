@@ -76,7 +76,7 @@ public class HeroMovement : MonoBehaviour
 
     private void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && _canJump)
+        if (_inputReader.IsSpaceDown() && _canJump)
         {
             _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
 

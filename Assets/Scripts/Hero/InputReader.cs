@@ -8,4 +8,9 @@ public class InputReader
     {
         return Input.GetAxis(Horizontal);
     }
+
+    public bool IsSpaceDown()
+    {
+        return Input.GetKeyDown(KeyCode.Space);
+    }
 }
