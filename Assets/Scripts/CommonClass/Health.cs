@@ -1,10 +1,13 @@
+using System;
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour, IDamagable
+public class Health : MonoBehaviour, IDamagable
 {
     [SerializeField] private float _health;
 
     private float _currentHealth;
+
+    public event Action<GameObject> Died;
 
     private void Awake()
     {
@@ -16,7 +19,15 @@ public class EnemyHealth : MonoBehaviour, IDamagable
         _currentHealth -= damage;
 
         if (IsDied())
-            Destroy(gameObject);
+            Died?.Invoke(gameObject);
+    }
+
+    public void Treat(float countHeal)
+    {
+        _currentHealth += countHeal;
+
+        if (_currentHealth > _health)
+            _currentHealth = _health;
     }
 
     private bool IsDied()

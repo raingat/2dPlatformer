@@ -3,52 +3,40 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    [SerializeField] private Transform _pointRaycast;
+    [SerializeField] private Weapon _weapon;
 
-    [SerializeField] private float _damage;
-    [SerializeField] private float _distance;
     [SerializeField] private float _waitTimeToAttack;
-
-    [SerializeField] private LayerMask _layerMask;
 
     private Coroutine _coroutine;
 
-    private RaycastHit2D _raycastHit;
-
-    private void Update()
+    private void FixedUpdate()
     {
-        Debug.DrawRay(_pointRaycast.position, transform.right * _distance, Color.yellow);
-
-        _raycastHit = Physics2D.Raycast(_pointRaycast.position, transform.right, _distance, _layerMask);
-
-        if (_raycastHit.collider != null)
+        if (_weapon.CanAttack)
         {
-            if (_raycastHit.transform.TryGetComponent(out IDamagable enemy) && _coroutine == null)
+            if (_coroutine == null)
             {
-                _coroutine = StartCoroutine(AttackEnemy(enemy));
+                _coroutine = StartCoroutine(AttackTarget());
             }
         }
 
-        if (_raycastHit.collider == null && _coroutine != null)
+        if (_weapon.CanAttack == false)
         {
-            StopCoroutine(_coroutine);
+            if (_coroutine != null)
+            {
+                StopCoroutine(_coroutine);
 
-            _coroutine = null;
+                _coroutine = null;
+            }
         }
     }
 
-    private void Attack(IDamagable enemy)
-    {
-        enemy.TakeDamage(_damage);
-    }
-
-    private IEnumerator AttackEnemy(IDamagable enemy)
+    private IEnumerator AttackTarget()
     {
         WaitForSeconds waitForSeconds = new WaitForSeconds(_waitTimeToAttack);
 
         while (enabled)
         {
-            Attack(enemy);
+            _weapon.Attack();
 
             yield return waitForSeconds;
         }

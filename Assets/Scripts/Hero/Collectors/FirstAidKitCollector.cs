@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class FirstAidKitCollector : MonoBehaviour
 {
-    [SerializeField] private HeroHealth _hero;
+    [SerializeField] private Treate _hero;
 
     private ITreatment _treatment;
 
