@@ -9,8 +9,15 @@ public class InputReader
         return Input.GetAxis(Horizontal);
     }
 
-    public bool IsSpaceDown()
+    public bool IsJump()
     {
         return Input.GetKeyDown(KeyCode.Space);
+    }
+
+    public bool IsAttack()
+    {
+        int numberMouseButton = 0;
+
+        return Input.GetMouseButtonDown(numberMouseButton);
     }
 }

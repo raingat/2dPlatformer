@@ -66,7 +66,7 @@ public class HeroMovement : MonoBehaviour
 
             transform.rotation = Quaternion.Euler(Vector2.up * degreesRotate);
         }
-        else
+        else if (direction > 0.0f)
         {
             degreesRotate = 0.0f;
 
@@ -76,7 +76,7 @@ public class HeroMovement : MonoBehaviour
 
     private void Jump()
     {
-        if (_inputReader.IsSpaceDown() && _canJump)
+        if (_inputReader.IsJump() && _canJump)
         {
             _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
 

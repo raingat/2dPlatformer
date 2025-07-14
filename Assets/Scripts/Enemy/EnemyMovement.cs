@@ -8,13 +8,37 @@ public class EnemyMovement : MonoBehaviour
 
     [SerializeField] private EnemyAnimation _enemyAnimation;
 
+    [SerializeField] private Transform _pointRaycast;
+
+    [SerializeField] private float _distance;
+
+    [SerializeField] private LayerMask _layerMask;
+
+    private RaycastHit2D _raycastHit;
+
     private int _currentWayPoint = 0;
 
     private bool _isRunning = false;
 
     private void Update()
     {
-        Move();
+        Debug.DrawRay(_pointRaycast.position, transform.right * _distance, Color.red);
+
+        _raycastHit = Physics2D.Raycast(_pointRaycast.position, transform.right, _distance, _layerMask);
+
+        if (_raycastHit.collider == null)
+        {
+            Move();
+        }
+        else
+        {
+            MoveToTarget(_raycastHit.transform.position);
+        }
+    }
+
+    private void MoveToTarget(Vector2 positionTarget)
+    {
+        transform.position = Vector2.MoveTowards(transform.position, positionTarget, _speed * Time.deltaTime);
     }
 
     private void Move()
