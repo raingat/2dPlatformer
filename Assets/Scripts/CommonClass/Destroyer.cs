@@ -19,8 +19,8 @@ public class Destroyer : MonoBehaviour
         _health.Died -= DestroyPerson;
     }
 
-    private void DestroyPerson(GameObject character)
+    private void DestroyPerson(Health character)
     {
-        Destroy(character);
+        Destroy(character.gameObject);
     }
 }

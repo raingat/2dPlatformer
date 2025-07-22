@@ -1,11 +1,19 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class SliderHealthBarSmooth : SliderHealthBar
+public class SliderHealthBarSmooth : HealthBar
 {
     private Coroutine _coroutine;
 
+    private Slider _slider;
+
     private float _stepIncreaseCoefficient = 1.0f;
+
+    private void Awake()
+    {
+        _slider = GetComponent<Slider>();
+    }
 
     protected override void ChangeValue(float currentHealth)
     {
