@@ -3,6 +3,8 @@ using UnityEngine;
 public class InputReader
 {
     private readonly string Horizontal = nameof(Horizontal);
+    private readonly int NumberMouseButton = 0;
+    private readonly KeyCode KeyCodeToVampirism = KeyCode.E;
 
     public float GetHorizontalDirection()
     {
@@ -16,8 +18,11 @@ public class InputReader
 
     public bool IsAttack()
     {
-        int numberMouseButton = 0;
+        return Input.GetMouseButtonDown(NumberMouseButton);
+    }
 
-        return Input.GetMouseButtonDown(numberMouseButton);
+    public bool IsVampirism()
+    {
+        return Input.GetKeyDown(KeyCodeToVampirism);
     }
 }
