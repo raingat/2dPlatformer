@@ -7,11 +7,9 @@ public class Vampirism : MonoBehaviour
     [SerializeField] private float _workTime;
     [SerializeField] private float _rechargeTime;
 
-    [SerializeField] private float _radiusAction;
-
     [SerializeField] private float _numberReturnHealth;
 
-    [SerializeField] private LayerMask _layerMask;
+    [SerializeField] private TargetSearcher _targetSearcher;
 
     [SerializeField] private DisplayVampirismZone _zone;
 
@@ -19,8 +17,9 @@ public class Vampirism : MonoBehaviour
 
     private InputReader _inputReader = new();
 
+    private Coroutine _coroutine;
+
     private bool _canActivate = true;
-    private bool _isActivate = false;
 
     public event Action<float> Activated;
     public event Action<float> Deactivated;
@@ -34,16 +33,6 @@ public class Vampirism : MonoBehaviour
     {
         if (_inputReader.IsVampirism() && _canActivate)
             StartCoroutine(TurnOnTimer(_workTime));
-
-        if (_isActivate)
-            StealHealth(SearchTarget());
-    }
-
-    private Collider2D SearchTarget()
-    {
-        Collider2D colliderTarget = Physics2D.OverlapCircle(transform.position, _radiusAction, _layerMask);
-
-        return colliderTarget;
     }
 
     private void StealHealth(Collider2D colliderTarget)
@@ -63,7 +52,7 @@ public class Vampirism : MonoBehaviour
     {
         _canActivate = false;
 
-        _isActivate = true;
+        _coroutine = StartCoroutine(LaunchAbility());
 
         _zone.TurnOn();
 
@@ -72,7 +61,12 @@ public class Vampirism : MonoBehaviour
 
     private void DeactivateAbility()
     {
-        _isActivate = false;
+        if (_coroutine != null)
+        {
+            StopCoroutine(_coroutine);
+
+            _coroutine = null;
+        }
 
         _zone.TurnOff();
 
@@ -93,6 +87,16 @@ public class Vampirism : MonoBehaviour
         yield return rechargeTime;
 
         _canActivate = true;
+    }
+
+    private IEnumerator LaunchAbility()
+    {
+        while (enabled)
+        {
+            StealHealth(_targetSearcher.Locate());
+
+            yield return null;
+        }
     }
 }
 
